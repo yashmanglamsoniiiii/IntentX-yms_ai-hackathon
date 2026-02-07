@@ -60,12 +60,31 @@ async function analyzeText() {
     btnText.classList.add('hidden');
     loader.classList.remove('hidden');
 
-    try {
-        const response = await fetch('http://127.0.0.1:8000/predict', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text })
-        });
+    // try {
+    //     const response = await fetch('http://127.0.0.1:8000/predict', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ message: text })
+    //     });
+
+
+    // Switch between these two by commenting/uncommenting:
+// const API_BASE_URL = 'http://127.0.0.1:8000'; // 🏠 Use this for Local Testing
+const API_BASE_URL = 'https://intentx-backend.onrender.com'; // 🚀 Use this for Live Website
+try {
+    // We use backticks (`) and ${} to combine the base URL with the /predict path
+    const response = await fetch(`${API_BASE_URL}/predict`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text }) // Ensure 'text' matches your variable name
+    });
+
+    const data = await response.json();
+    // ... rest of your logic to update the sphere and result card
+} catch (error) {
+    console.error("Connection Failed:", error);
+    // Optional: Show an error message on the UI
+}
         
         const data = await response.json();
 
@@ -78,7 +97,7 @@ async function analyzeText() {
 
         // // Update 3D Sphere Color based on result
 
-        
+
         // if (data.label === 'PHISHING') {
         //     sphere.material.color.setHex(0xef4444); // Red
         //     document.getElementById('resultCard').style.borderColor = '#ef4444';

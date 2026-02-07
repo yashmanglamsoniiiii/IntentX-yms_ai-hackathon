@@ -265,10 +265,21 @@ async def predict(request: AnalysisRequest):
         "confidence": "98.7%" if label != "SAFE" else "91.2%"
     }
 
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
+
+import os
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
-
+    # Render provides a "PORT" environment variable. 
+    # If it's not there (like on your PC), it defaults to 8000.
+    port = int(os.environ.get("PORT", 8000))
+    
+    # On Render, we use 0.0.0.0. On your PC, we can use 127.0.0.1 or 0.0.0.0.
+    # It's actually safe to use 0.0.0.0 everywhere!
+    uvicorn.run("backend:app", host="0.0.0.0", port=port, reload=True)
 
     # uvicorn backend:app --reload -> uvicorn used to run run backend
     # http://127.0.0.1:8000/docs   -> open on new tab to cross check
