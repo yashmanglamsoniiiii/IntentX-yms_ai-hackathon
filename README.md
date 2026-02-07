@@ -3,7 +3,6 @@
 Detects phishing by understanding **intent**, not just links.
 
 ## 🚀 How to Run
-## 🚀 How to Run
 
 ### 1. Backend (FastAPI)
 - `cd backend`
