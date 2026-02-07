@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntentX | AI PhishGuard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <nav class="navbar">
+        <div class="logo">INTENT<span class="text-blue-500">X</span></div>
+        <div class="nav-links">
+            <span class="status-indicator">● System Active</span>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        <header class="hero-section">
+            <h1 class="glitch-text">Decode Malicious Intent</h1>
+            <p>Our AI analyzes the <strong>psychological behavior</strong> behind messages, catching threats that traditional filters miss.</p>
+        </header>
+
+        <section class="input-container glass">
+            <div class="scan-line"></div>
+            <textarea id="userInput" placeholder="Paste suspicious email, SMS, or DM here..."></textarea>
+            
+            <button onclick="analyzeText()" id="analyzeBtn">
+                <span id="btnText">Execute Intent Scan</span>
+                <div id="loader" class="spinner hidden"></div>
+            </button>
+        </section>
+
+        <section id="resultArea" class="hidden">
+            <div class="result-card glass" id="resultCard">
+                <div class="result-header">
+                    <span id="riskBadge" class="badge">Checking...</span>
+                    <h3 id="riskLevel">Analysis Results</h3>
+                </div>
+                <p id="riskDescription"></p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Confidence</span>
+                        <span class="stat-value" id="confValue">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Threat Actor</span>
+                        <span class="stat-value" id="actorType">Unknown</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

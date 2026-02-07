@@ -1,0 +1,44 @@
+http://192.168.1.1/secure-login   -> phishy
+http://www.paypa1.com/verify  -> suspicious
+https://www.google.com/settings -> safe
+
+
+
+
+phishy (high risk):-
+
+IP-Based (Classic Hack): http://192.168.1.1/secure-login
+Why: Legitimate companies use domain names (like google.com), never raw numbers.
+
+Typosquatting: http://www.paypa1.com/verify
+Why: Uses a 1 instead of an l. To a human eye it looks real, but your code flags it.
+
+Subdomain Trick: http://amazon.security-update.net/account
+Why: The real domain here is security-update.net, not Amazon.
+
+
+
+
+
+
+
+Suspicious (Medium Risk) :-
+
+URL Shorteners: https://bit.ly/3yXz9Qw or https://tinyurl.com/auth-check
+Why: Shorteners hide the final destination. In a security context, a hidden destination is a red flag.
+
+Suspicious Keywords: http://my-service.com/login-verify-banking
+Why: Even if the domain is new, having "banking" or "verify" in the path increases the score in your analyze_links logic.
+
+
+
+
+
+
+Safe (Low Risk) :-
+
+Direct Official Link: https://www.google.com/settings
+
+Standard Service: https://www.microsoft.com/en-us/microsoft-365
+
+Company Portal: https://help.netflix.com/en/node/12345
